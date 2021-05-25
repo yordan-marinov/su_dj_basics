@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 from .models import BlogPosts
@@ -11,8 +11,8 @@ def blog_home_page(request):
     return render(request, template_name, context)
 
 
-def blog_post_detail_page(request, pk):
-    bp_obj = BlogPosts.objects.get(id=pk)
-    template_name = "blog_post_detail.html"
+def blog_all_posts_page(request, pk):
+    bp_obj = get_object_or_404(BlogPosts, id=pk)
+    template_name = "blog_all_posts.html"
     context = {"bp_obj": bp_obj}
     return render(request, template_name, context)
