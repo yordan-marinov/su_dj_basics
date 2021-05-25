@@ -4,7 +4,7 @@ from django.db import models
 
 
 class BlogPosts(models.Model):
-    title = models.TextField()
+    title = models.CharField(max_length=50)
     content = models.TextField(null=True, blank=True)
 
     def __str__(self) -> str:
