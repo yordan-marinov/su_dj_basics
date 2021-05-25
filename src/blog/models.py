@@ -8,4 +8,4 @@ class BlogPosts(models.Model):
     content = models.TextField(null=True, blank=True)
 
     def __str__(self) -> str:
-        return self.title
+        return f"{self.id}. {self.title}"
