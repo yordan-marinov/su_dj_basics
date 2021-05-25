@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    {% csrf_token %}
+    <h3>This are all my posts!!!</h3>
+    {% for bp in obj %}
+        <ul>
+            <li>{{ bp.title }}</li>
+        </ul>
+        
+    {% endfor %}
+        
+{% endblock content %}
+    
