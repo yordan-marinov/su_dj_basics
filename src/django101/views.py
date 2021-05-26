@@ -1,6 +1,8 @@
 # Model View Template (MVP)
 from django.shortcuts import render
 
+from .form import ContactForm
+
 
 def home_page(request):
     context = {"title": "Hello there...", "page_name": "home"}
@@ -15,6 +17,14 @@ def about_page(request):
 
 
 def contact_page(request):
-    context = {"title": "Contact us", "page_name": "contacts"}
+    form = ContactForm(request.POST or None)
+    if form.is_valid():
+        print(form.cleaned_data)
+    
+    context = {
+        "title": "Contact us", 
+        "page_name": "contacts",
+        'form': form,
+        }
 
-    return render(request, "contact.html", context)
+    return render(request, "form.html", context)
