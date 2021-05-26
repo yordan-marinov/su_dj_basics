@@ -19,7 +19,7 @@ def about_page(request):
 def contact_page(request):
     form = ContactForm(request.POST or None)
     if form.is_valid():
-        print(form.cleaned_data)
+        print(f"===> {form.cleaned_data}")
     
     context = {
         "title": "Contact us", 
