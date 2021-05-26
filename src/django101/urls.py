@@ -18,12 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 
 from .views import home_page, about_page, contact_page
-# from blog.views import blog_post_detail_page
+from blog.views import blog_post_create_view
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", home_page),
+    path("blog-create/", blog_post_create_view),
     path("blog/", include('blog.urls')),
     path("about/", about_page),
     path("contact/", contact_page),
