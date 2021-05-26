@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    {% csrf_token %}
+    <h3>{{ bp_obj.title|title }} - Delete</h3>
+    <br>
+    <p>{{ bp_obj.content }}</p>
+
+        
+{% endblock content %}
+    
