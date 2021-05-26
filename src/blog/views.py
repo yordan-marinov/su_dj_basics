@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
+from django.http import HttpResponseRedirect
+from .forms import BlogPostModelForm
 from .models import BlogPosts
 
 # CRUD -> Create Retrieve(Detail) Update Delete
@@ -24,8 +26,14 @@ def blog_post_list_view(request):
 def blog_post_create_view(request):
     """Create objects of the given model and use a form"""
 
-    template_name = "blog/create.html"
-    context = {"form": None}
+    form = BlogPostModelForm(request.POST or None)
+    if form.is_valid():
+        # bp_obj = BlogPosts.objects.create(**form.cleaned_data)
+        form.save()
+        return HttpResponseRedirect("/blog-new")
+
+    template_name = "form.html"
+    context = {"form": form}
     return render(request, template_name, context)
 
 
