@@ -4,6 +4,7 @@ from .views import blog_home_page, blog_all_posts_page
 
 
 urlpatterns = [
-    path('', blog_home_page), 
-    path('<int:pk>/', blog_all_posts_page),
+    path("", blog_home_page),
+    path("<str:slug>/", blog_all_posts_page),
+    # path('<int:pk>/', blog_all_posts_page),
 ]
