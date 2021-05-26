@@ -19,7 +19,8 @@ class BlogPostModelForm(forms.ModelForm):
             'content',
         ]
     
-    # This validation is equal if we set unique=True in .models BlogPost
+    # This validation is equal if we set unique=True in .models BlogPost.
+    # The difference is that is case insensetive due to __iexact (title__iexact=title).
     def clean_title(self, *args, **kwargs):
         """This validation function is checking 
         if the title has been used in previous post,
@@ -36,7 +37,7 @@ class BlogPostModelForm(forms.ModelForm):
         title = self.cleaned_data.get('title')
         
         # Checks if the customer's title has been used.
-        qs = BlogPosts.objects.filter(title=title)
+        qs = BlogPosts.objects.filter(title__iexact=title)
         
         # Raises error if the customer's title exist in db else it returns it.
         if qs.exists():
