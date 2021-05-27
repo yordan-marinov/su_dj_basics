@@ -4,9 +4,8 @@
  <h1>This are the blog_2 posts!!!</h1> 
  
  {% for i in obj %}
-     <ul><h3>{{ i|title }}</h3></ul>
-     <p>{{ i.created_on }}</p>
-     <br>
+    <br>
+    <ul><h3>{{ i|title }}</h3></ul>
  {% endfor %}
      
 {% endblock content %}
