@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from .models import Post
 
@@ -28,8 +28,26 @@ def list_page(request):
 def create_page(request):
     pass
 
-def details_page(request):
-    pass
+def details_page(request, slug):
+    """This funcition render detail view of the each post
+    by showing the post title, date on which is been created
+    and also the content.
+
+    Args:
+        request : Client request passed by django
+        slug (str): Unique string identification 
+
+    Returns:
+        html: Dynamicly generated view of the html template
+    """
+    
+    # It returns Post object if slug is valid 
+    # otherwise raise 404 error exeption
+    obj = get_object_or_404(Post, slug=slug)
+    template_name = 'blog_2/detais.html'
+    context = {'post_obj': obj}
+    
+    return render(request, template_name, context)
 
 def update_page(reqeust):
     pass
