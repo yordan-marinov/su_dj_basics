@@ -32,12 +32,21 @@ class BlogPostModelForm(forms.ModelForm):
         Returns:
             [title]: [This is the form object with title equal to the given title]
         """
-        print(self.cleaned_data)
         # Customer's given title.
-        title = self.cleaned_data.get('title')
+        title = self.cleaned_data.get('title') # self.cleaned_data is a dict 
         
         # Checks if the customer's title has been used.
-        qs = BlogPosts.objects.filter(title__iexact=title)
+        qs = BlogPosts.objects.filter(title__iexact=title) # title__iexact -> lookup for the same title ignoring the casing
+        
+        # self -> <class 'blog.forms.BlogPostModelForm'>
+        instance = self.instance # self.instance -> instance is method of self (print(dir(self)))
+
+        # print(f'===> {dir(qs)}')
+        # Instance is None when we create new post 
+        # Otherwise instance is not None
+        if instance is not None:
+            # QuerySet is equal to [] when exlude the instance we want to edit
+            qs = qs.exclude(pk=instance.pk) # It could be id=instance.id, slug=instance.slug and etc.
         
         # Raises error if the customer's title exist in db else it returns it.
         if qs.exists():
