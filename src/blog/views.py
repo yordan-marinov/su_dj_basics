@@ -20,6 +20,7 @@ def blog_post_list_view(request):
     qs = BlogPosts.objects.all() # qs=queryset -> list of python objects
     template_name = "blog/list.html"
     context = {"obj_list": qs}
+    
     return render(request, template_name, context)
 
 
@@ -49,9 +50,16 @@ def blog_post_retrieve_view(request, slug):
 def blog_post_update_view(request, slug):
     """It update the given object and is using a form"""
 
-    bp_obj = get_object_or_404(BlogPosts, slug=slug)
-    template_name = "blog/update.html"
-    context = {"bp_obj": bp_obj, "form": None}
+    qs = get_object_or_404(BlogPosts, slug=slug)
+    form = BlogPostModelForm(request.POST or None, instance=qs)
+    
+    if form.is_valid():
+        form.save()
+        form = BlogPostModelForm()
+    
+    template_name = "form.html"
+    context = {"bp_obj": qs, "form": form}
+    
     return render(request, template_name, context)
 
 
