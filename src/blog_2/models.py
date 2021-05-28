@@ -27,5 +27,5 @@ class Post(models.Model):
         ordering = ['-created_on']
 
     def __str__(self) -> str:
-        # The string preprsentation will be with the post title
+        # The string preprsentation will be the post title
         return self.title
