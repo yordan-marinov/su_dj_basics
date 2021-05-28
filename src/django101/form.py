@@ -12,7 +12,7 @@ class ContactForm(forms.Form):
 
         email = self.cleaned_data.get("email") # => email=form.cleaned_data.get('email')
         # In this case self refers to the form object.
-        print(f"== email ==> {email}")
+
         if email.endswith(".bg"):
             raise forms.ValidationError("This is not a valid email!")
         return email
