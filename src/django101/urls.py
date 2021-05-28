@@ -30,7 +30,7 @@ urlpatterns = [
     
     # This are the urls of the second blog
     path("blog-2/", include('blog_2.urls')),
-    path('blog-2-new/', create_page),
+    path('blog-2-new/', create_page, name='create'),
     
     # This are the urls of the main app urls
     path("", home_page),
