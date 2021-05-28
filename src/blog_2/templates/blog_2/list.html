@@ -2,10 +2,10 @@
 
 {% block content %} {% csrf_token %}
  <h1>This are the blog_2 posts!!!</h1> 
- 
+
  {% for i in obj %}
-    <br>
-    <ul><h3>{{ i|title }}</h3></ul>
+   <li><a href="{{ i.slug }}/">{{ i|title }}</a></li>
+   <br>
  {% endfor %}
-     
+
 {% endblock content %}
