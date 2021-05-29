@@ -2,13 +2,9 @@
 
 
 {% block content %}
-    {% csrf_token %}
-    <h3>This are all my posts!!!</h3>
+
     {% for obj in obj_list %}
-        <ul>
-            <li><a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a></li>
-        </ul>
-        
+        {% include 'blog/list_inline.html' %}
     {% endfor %}
         
 {% endblock content %}
