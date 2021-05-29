@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 # Create your views here.
 from django.http import HttpResponseRedirect
@@ -66,7 +66,11 @@ def blog_post_update_view(request, slug):
 def blog_post_delete_view(request, slug):
     """It delete the given object"""
 
-    bp_obj = get_object_or_404(BlogPosts, slug=slug)
+    qs = get_object_or_404(BlogPosts, slug=slug)
+    if request.method == 'POST':
+        qs.delete()
+        return redirect('/blog')
+
     template_name = "blog/delete.html"
-    context = {"bp_obj": bp_obj}
+    context = {"object": qs}
     return render(request, template_name, context)
