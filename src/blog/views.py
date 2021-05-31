@@ -17,7 +17,9 @@ def blog_post_list_view(request):
 
     #qs = BlogPosts.objects.filter(title_contains='whatever')
     # If we filter, that way is how we can use it as search.
-    qs = BlogPosts.objects.all() # qs=queryset -> list of python objects
+    qs = BlogPosts.objects.published()
+    # published() is from the BlogPostManager objects manager passed to the model
+    
     template_name = "blog/list.html"
     context = {"obj_list": qs}
     
