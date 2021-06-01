@@ -1,3 +1,4 @@
+from django.db.models.manager import Manager
 from django.urls import reverse
 from django.db import models
 from django.utils import timezone
@@ -5,14 +6,27 @@ from django.utils import timezone
 # Create your models here.
 
 
-class BlogPostManager(models.Manager):
+class BlogPostQuerySet(models.QuerySet):
     def published(self):
         now = timezone.now()
         
-        # __lte means any post older than now 
-        return self.get_queryset().filter(published_date__lte=now)
+        # __lte means any post older than now
+        return self.filter(publish_date__lte=now)
+        # return self.get_queryset().filter(publish_date__lte=now)
         # The get_queryset()=BlogPosts.objects
+        # publish_date is a field in BlogPosts model
         # __lte=less then or equal (dunder method)
+
+
+
+class BlogPostManager(models.Manager):
+    def get_queryset(self):
+        return BlogPostQuerySet(self.model, using=self._db)
+
+    def published(self):
+        return self.get_queryset().published()
+
+
 
 class BlogPosts(models.Model):
     title = models.CharField(max_length=50)
@@ -23,7 +37,7 @@ class BlogPosts(models.Model):
     )
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    
+
     objects = BlogPostManager()
 
     class Meta:
