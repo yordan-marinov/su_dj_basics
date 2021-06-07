@@ -27,6 +27,15 @@ class BlogPostManager(models.Manager):
         return self.get_queryset().published()
 
 
+class Author(models.Model):
+    first_name = models.CharField(max_length=48)
+    last_name = models.CharField(max_length=48)
+    email = models.EmailField()
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
+
+
 
 class BlogPosts(models.Model):
     title = models.CharField(max_length=50)
@@ -37,6 +46,7 @@ class BlogPosts(models.Model):
     )
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
 
     objects = BlogPostManager()
 
