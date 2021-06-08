@@ -1,3 +1,4 @@
+from django.db.models.fields import CharField
 from django.db.models.manager import Manager
 from django.urls import reverse
 from django.db import models
@@ -9,14 +10,12 @@ from django.utils import timezone
 class BlogPostQuerySet(models.QuerySet):
     def published(self):
         now = timezone.now()
-        
         # __lte means any post older than now
         return self.filter(publish_date__lte=now)
         # return self.get_queryset().filter(publish_date__lte=now)
         # The get_queryset()=BlogPosts.objects
         # publish_date is a field in BlogPosts model
         # __lte=less then or equal (dunder method)
-
 
 
 class BlogPostManager(models.Manager):
@@ -33,8 +32,7 @@ class Author(models.Model):
     email = models.EmailField()
 
     def __str__(self):
-        return f'{self.first_name} {self.last_name}'
-
+        return f"{self.first_name} {self.last_name}"
 
 
 class BlogPosts(models.Model):
