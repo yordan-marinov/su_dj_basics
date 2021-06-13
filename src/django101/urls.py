@@ -31,7 +31,7 @@ urlpatterns = [
     path("blog-2/", include("blog_2.urls")),
     path("blog-2-new/", create_page, name="create"),
     # This are the urls of the todo app
-    path("todo/", include("todo/urls")),
+    path("todo/", include("todo.urls")),
     # This are the urls of the main app urls
     path("", home_page),
     path("about/", about_page),
