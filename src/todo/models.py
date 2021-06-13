@@ -15,7 +15,7 @@ class Task(models.Model):
     priority = models.CharField(max_length=6, choices=PRIORITY_CHOICES)
 
     class Meta:
-        ordering = ["status", 'priority']
+        ordering = ["complete", 'priority']
 
     def __str__(self):
         return self.task
