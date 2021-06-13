@@ -3,7 +3,14 @@
 
 
 {% block content %}
-    <h1>Todo app</h1>
+    <h1>Todo</h1>
+    
+    {% for task in tasks %}
+        <div>
+            <p>{{ task }}</p>
+        </div>
+    {% endfor %}
+        
 {% endblock content %}
     
     
