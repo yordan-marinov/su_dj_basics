@@ -3,9 +3,9 @@ from django.db import models
 
 class Task(models.Model):
     PRIORITY_CHOICES = (
-        (3, "High"),
-        (2, "Medium"),
-        (1, "Low"),
+        ('3', "High"),
+        ('2', "Medium"),
+        ('1', "Low"),
     )
 
     task = models.CharField(max_length=120)
