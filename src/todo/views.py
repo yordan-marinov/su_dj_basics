@@ -1,7 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-# Create your views here.
+from .models import Task
+
+
 def todo_list(request):
+    qs = Task.objects.all()
     template_name = 'todo/list.html'
-    return render(request, template_name)
+    context = {"tasks": qs}
+    return render(request, template_name, context)
