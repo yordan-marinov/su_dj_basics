@@ -9,13 +9,13 @@ class Task(models.Model):
     )
 
     task = models.CharField(max_length=120)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
     complete = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
     priority = models.CharField(max_length=6, choices=PRIORITY_CHOICES)
 
     class Meta:
-        ordering = ["complete", 'priority']
+        ordering = ["complete", '-priority']
 
     def __str__(self):
         return self.task
