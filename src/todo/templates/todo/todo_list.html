@@ -3,13 +3,19 @@
 
 
 {% block content %}
-    <h1><a href="{% url 'todo_create' %}">TODO</a></h1>
-    <br>
+    <h1><a href="{% url 'todo_create' %}">Todo Task</a></h1>
+    <hr>
     {% for task in tasks %}
         {% if not task.complete %}
-            <h5><a href="{% url 'todo_edit' pk=task.pk %}">{{ task }}</a></h5>
+            <h5>
+                <a href="{% url 'todo_edit' pk=task.pk %}">{{ task }}</a>
+                <a href="{% url 'todo_delete' pk=task.pk %}"> Delete</a>
+            </h5>
         {% else %}
-            <h5><s><a href="{% url 'todo_edit' pk=task.pk %}">{{ task }}</a></s></h5>
+            <h5>
+                <s><a href="{% url 'todo_edit' pk=task.pk %}">{{ task }}</a></s>
+                <a href="{% url 'todo_delete' pk=task.pk %}"> Delete</a>
+            </h5>
         {% endif %}
     {% endfor %}
 {% endblock content %}
