@@ -1,5 +1,4 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from django.http import HttpResponse
 
 from .models import Task
 from .forms import TaskForm
@@ -33,3 +32,13 @@ def todo_edit(request, pk):
 
     context = {"form": form}
     return render(request, "todo/todo_edit.html", context)
+
+
+def todo_delete(request, pk):
+    obj = get_object_or_404(Task, pk=pk)
+    if request.method == 'POST':
+        obj.delete()
+        return redirect('todo_list')
+
+    context = {'task': obj}
+    return render(request, 'todo/todo_delete.html', context)
