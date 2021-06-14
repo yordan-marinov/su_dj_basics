@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    <h1>Are you sure you want to delete '{{ task }}' task?</h1>
+    {% include 'todo/go_back.html' %}
+    <hr>
+    <form action="." method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Delete">
+    </form>
+{% endblock content %}
+    
