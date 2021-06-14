@@ -21,21 +21,26 @@ from django.urls import path, include
 from .views import home_page, about_page, contact_page
 from blog.views import blog_post_create_view
 from blog_2.views import create_page
+from todo.views import todo_create
 
 
 urlpatterns = [
     # This are the urls of the first blog
     path("blog-new/", blog_post_create_view),
     path("blog/", include("blog.urls")),
+
     # This are the urls of the second blog
     path("blog-2/", include("blog_2.urls")),
     path("blog-2-new/", create_page, name="create"),
+
     # This are the urls of the todo app
     path("todo/", include("todo.urls")),
+
     # This are the urls of the main app urls
     path("", home_page),
     path("about/", about_page),
     path("contact/", contact_page),
+
     # Built in admin url
     path("admin/", admin.site.urls),
 ]
