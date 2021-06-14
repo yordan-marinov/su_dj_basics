@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    <h1><a href="{% url 'todo_create' %}">TODO</a></h1>
+    <br>
+    {% for task in tasks %}
+        {% if not task.complete %}
+            <h5><a href="{% url 'todo_edit' pk=task.pk %}">{{ task }}</a></h5>
+        {% else %}
+            <h5><s><a href="{% url 'todo_edit' pk=task.pk %}">{{ task }}</a></s></h5>
+        {% endif %}
+    {% endfor %}
+{% endblock content %}
+    
+    
