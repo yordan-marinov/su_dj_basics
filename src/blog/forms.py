@@ -1,7 +1,21 @@
 from django import forms
-from django.forms import fields
 
-from .models import BlogPosts
+from .models import Author, BlogPosts
+
+
+class AuthorForm(forms.ModelForm):
+    """Form definition for Author."""
+
+    class Meta:
+        """Meta definition for Authorform."""
+
+        model = Author
+        fields = [
+            'first_name',
+            'last_name',
+            'email',
+        ]
+
 
 
 class BlogPostForm(forms.Form):
@@ -17,6 +31,7 @@ class BlogPostModelForm(forms.ModelForm):
             'title',
             'slug',
             'content',
+            'author',
         ]
     
     # This validation is equal if we set unique=True in .models BlogPost.
