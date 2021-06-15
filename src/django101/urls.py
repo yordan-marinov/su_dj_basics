@@ -26,7 +26,7 @@ from todo.views import todo_create
 
 urlpatterns = [
     # This are the urls of the first blog
-    path("blog-new/", blog_post_create_view),
+    # path("blog-new/", blog_post_create_view),
     path("blog/", include("blog.urls")),
 
     # This are the urls of the second blog
