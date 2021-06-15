@@ -2,9 +2,11 @@
 
 
 {% block content %}
+    <h1>My posts</h1>
+    <hr>
 
     {% for obj in obj_list %}
-        {% include 'blog/list_inline.html' %}
+        <a href="{% url 'details_name' slug=obj.slug %}">{% include 'blog/list_inline.html' %}</a>
     {% endfor %}
         
 {% endblock content %}
