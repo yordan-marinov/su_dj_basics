@@ -3,6 +3,9 @@
 
 {% block content %}
     <h1>My posts</h1>
+    <a href="{% url 'create_author' %}">New author</a>
+    <br>
+    <a href="{% url 'create_name' %}">New post</a>
     <hr>
 
     {% for obj in obj_list %}
