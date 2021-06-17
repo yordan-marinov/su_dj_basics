@@ -12,6 +12,6 @@ urlpatterns = [
     path("", list_page, name='list'),
     path("create/", create_page, name="create"),
     path('<str:slug>/', details_page, name='details'),
-    path('<str:slug>/edit/', update_page, name="update"),
+    path('<str:slug>/update/', update_page, name="update"),
     path('<str:slug>/delete/', delete_page, name='delete'),
     ]
