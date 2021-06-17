@@ -1,11 +1,16 @@
 {% extends 'base.html' %} 
 
-{% block content %} {% csrf_token %}
- <h1>This are the blog_2 posts!!!</h1> 
+{% block content %} 
+{% csrf_token %}
+<div> 
+<h1>Posts</h1><a href="{% url 'create' %}">add</a>
+</div>
+<hr> 
 
- {% for i in obj %}
-   <li><a href="{{ i.slug }}/">{{ i|title }}</a></li>
-   <br>
+
+ {% for post in posts %}
+   <h5><a href="{{ post.slug }}/">{{ post|title }}</a></h5>
+   <hr>
  {% endfor %}
 
 {% endblock content %}
