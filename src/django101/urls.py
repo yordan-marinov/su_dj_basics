@@ -26,12 +26,10 @@ from todo.views import todo_create
 
 urlpatterns = [
     # This are the urls of the first blog
-    # path("blog-new/", blog_post_create_view),
     path("blog/", include("blog.urls")),
 
     # This are the urls of the second blog
     path("blog-2/", include("blog_2.urls")),
-    path("blog-2-new/", create_page, name="create"),
 
     # This are the urls of the todo app
     path("todo/", include("todo.urls")),
