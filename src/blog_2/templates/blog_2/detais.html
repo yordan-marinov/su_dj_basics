@@ -2,14 +2,18 @@
 
 
 
-{% block content %} {% csrf_token %}
-
-    <h1>This is blog_2 details page</h1>
-    <br>
-    <h3>Title {{ post_obj.title|title }}</h3>
+{% block content %} 
+{% csrf_token %}
+    {% include 'blog_2/go_back.html' %}
+    <h1>Post with title '{{ post_obj.title|title }}'.</h1>
+    <p>Created on: {{ post_obj.created_on }}</p>
     <hr>
-    <h5>Author {{ pos_obj.author }}</h5>
-    <h6>Created on {{ post_obj.created_on }}</h6>
+    
+    {% if post_obj.author %}
+       <div>
+           <p>posted by:</p><h5>{{ post_obj.author }}</h5>
+        </div>
+    {% endif %}
     <br>
     <p>{{ post_obj.content }}</p>
 
