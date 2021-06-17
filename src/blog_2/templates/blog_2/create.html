@@ -4,13 +4,11 @@
 
 {% block content %}
 
-    <h1>This is blog_2 create page</h1>
-    <br>
-    <form action="." method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save</button>
-    </form>
+    <h1>Create your post</h1>
+    {% include 'blog_2/go_back.html' %}
+    <hr>
+
+    {% include 'blog_2/form.html' %}
 
 {% endblock content %}
     
