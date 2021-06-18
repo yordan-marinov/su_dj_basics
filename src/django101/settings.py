@@ -41,11 +41,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # Custom apps
     "blog",
     'blog_2',
     'products',
     'profiles',
     'todo',
+    'crm',
 ]
 
 MIDDLEWARE = [
