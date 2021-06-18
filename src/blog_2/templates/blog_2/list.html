@@ -9,8 +9,12 @@
 
 
  {% for post in posts %}
-   <h5><a href="{{ post.slug }}/">{{ post|title }}</a></h5>
-   <hr>
+  <h5>
+    <a href="{{ post.slug }}/">{{ post|title }}</a>
+    <a href="{% url 'update' slug=post.slug %}"><button>Update</button></a>
+    <a href="{% url 'delete' slug=post.slug %}"><button>Delete</button></a>
+  </h5>
+  <hr>
  {% endfor %}
 
 {% endblock content %}
