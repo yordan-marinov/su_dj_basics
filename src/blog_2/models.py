@@ -21,10 +21,11 @@ class Post(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
     author = models.ForeignKey(
-        'Author', 
+        "Author", 
         null=True, 
-        on_delete=models.CASCADE
-        )
+        blank=True, 
+        on_delete=models.CASCADE,
+    )
 
     class Meta:
         # This ordering is allowing us to stack
