@@ -4,6 +4,7 @@
 
 {% block content %} 
 {% csrf_token %}
+
     {% include 'blog_2/go_back.html' %}
     <h1>Post with title '{{ post_obj.title|title }}'.</h1>
     <p>Created on: {{ post_obj.created_on }}</p>
