@@ -41,4 +41,7 @@ urlpatterns = [
 
     # Built in admin url
     path("admin/", admin.site.urls),
+    
+    # CRM ulr
+    path('crm/', include('crm.urls')),
 ]
