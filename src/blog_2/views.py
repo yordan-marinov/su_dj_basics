@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render, get_object_or_404
 
-from .models import Post
-from .forms import PostForm, PostModelForm
+from .models import Author, Post
+from .forms import AuthorForm, PostForm, PostModelForm
 
 # CRUD
 # 1. List
@@ -36,18 +36,17 @@ def list_page(request):
 
 
 def create_page(request):
-    form = PostModelForm(request.POST or None)
-
-    # Checks if the form is with valid input
-    if form.is_valid():
-        # Seves the data from the form to the Post model(db)
-        form.save()
-        # It redirects customer to the blog-2 list view
+    post_form = PostModelForm(request.POST or None)
+    author_form = AuthorForm(request.POST or None)
+    if post_form.is_valid() and author_form.is_valid():
+        author = author_form.save()
+        post = post_form.save(commit=False)
+        post.author = author
+        post.save()
         return redirect("list")
 
     template_name = "blog_2/create.html"
-    context = {"form": form}
-
+    context = {"post_form": post_form, "author_form": author_form}
     return render(request, template_name, context)
 
 
@@ -74,15 +73,24 @@ def details_page(request, slug):
 
 
 def update_page(request, slug):
-    obj = get_object_or_404(Post, slug=slug)
-    form = PostModelForm(request.POST or None, instance=obj)
+    post_obj = get_object_or_404(Post, slug=slug)
+    author_obj = get_object_or_404(Author, pk=post_obj.author.pk)
+    post_form = PostModelForm(request.POST or None, instance=post_obj)
+    author_form = AuthorForm(request.POST or None, instance=author_obj)
 
-    if form.is_valid():
-        form.save()
+    if post_form.is_valid() and author_form.is_valid():
+        author = author_form.save()
+        post = post_form.save(commit=False)
+        post.author = author
+        post.save()
         return redirect("list")
 
     template_name = "blog_2/create.html"
-    context = {"page_name": "Updates", "form": form}
+    context = {
+        "page_name": "Updates",
+        "post_form": post_form,
+        "author_form": author_form,
+    }
 
     return render(request, template_name, context)
 
