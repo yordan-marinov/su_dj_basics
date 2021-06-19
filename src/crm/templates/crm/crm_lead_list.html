@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    <h1>This are the LEADS!!!</h1>
+    
+    {% for lead in leads %}
+        <div>
+            {{ lead }}
+        </div>
+        
+    {% endfor %}
+        
+{% endblock content %}
+    
