@@ -58,3 +58,16 @@ def create_lead(request):
         "page_name": "Create Page",
     }
     return render(request, "crm/crm_create_lead.html", context)
+
+
+def delete_lead(request, pk):
+    obj = Lead.objects.get(pk=pk)
+    if request.method == "POST" or None:
+        obj.delete()
+        return redirect("crm_lead_list")
+
+    context = {
+        "lead": obj,
+        "page_name": "Delete Lead",
+    }
+    return render(request, 'crm/crm_lead_delete.htm', context)
