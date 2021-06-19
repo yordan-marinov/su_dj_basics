@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+    <h1>This is the details of '{{ lead }}'!!!</h1>
+    {% include 'crm/back_to_leads.html' %}
+
+    <h3>name: {{ lead }}</h3>
+    <p>age: {{ lead.age }}</p>
+    <p>agent: <a href="{% url 'crm_agent_details' pk=lead.agent.pk %}"><h3>{{ lead.agent }}</h3></a></p>
+
+{% endblock content %}
+    
