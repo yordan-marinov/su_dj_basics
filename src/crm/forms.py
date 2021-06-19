@@ -14,3 +14,7 @@ class LeadForm(forms.Form):
     age = forms.IntegerField(validators=[positive_digit,])
     
      
+class LeadModelForm(forms.ModelForm):
+    class Meta:
+        model = Lead
+        fields = '__all__'
