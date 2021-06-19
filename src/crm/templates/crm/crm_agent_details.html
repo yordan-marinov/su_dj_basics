@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+
+
+
+{% block content %}
+    <h1>This is the '{{ agent|title }}' details page!!!</h1>
+    {% include 'crm/back_to_leads.html' %}
+    
+    {% if agent.full_name and agent.email %}
+        <p>agent name: {{ agent.full_name }}</p>
+        <p>agent email: {{ agent.email }}</p>
+    {% else %}
+        <br>
+        <h3>There are no details about this agent!</h3>
+    {% endif %}
+        
+{% endblock content %}
+    
