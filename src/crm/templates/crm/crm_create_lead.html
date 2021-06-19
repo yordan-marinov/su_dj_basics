@@ -1,19 +1,15 @@
-{% extends 'base.html' %}
-
-
-{% block content %}
-    <h1>To create new lead you need to fill the form</h1>
-    <hr>
-    
-    <form action="." method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Save">
-    </form>
-    <br>
-    <form action="{% url 'crm_lead_list' %}" method="GET">
-        <input type="submit" value="Cancel">
-    </form>
-
+{% extends 'base.html' %} {% block content %}
+<h1>To create new lead you need to fill the form</h1>
+<hr />
+<div>
+  <form action="." method="POST">
+    {% csrf_token %} {{ form.as_p }}
+    <hr />
+    <input type="submit" value="Save" />
+  </form>
+  <br />
+  <form action="{% url 'crm_lead_list' %}" method="GET">
+    <input type="submit" value="Cancel" />
+  </form>
+</div>
 {% endblock content %}
-    
