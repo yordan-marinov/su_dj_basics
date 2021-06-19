@@ -8,6 +8,7 @@
     {% for lead in leads %}
         <div>
             {{ lead }}
+            <a href="{% url 'crm_lead_details' pk=lead.pk %}"><input type="submit" value="Details"></a>
         </div>
         
     {% endfor %}
