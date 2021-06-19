@@ -4,13 +4,18 @@
 
 {% block content %}
     <h1>This are the LEADS!!!</h1>
+    <a href="{% url 'crm_lead_create'  %}">
+        <input type="submit" value="Create">
+    </a>
+    <hr>
     
     {% for lead in leads %}
         <div>
             {{ lead }}
-            <a href="{% url 'crm_lead_details' pk=lead.pk %}"><input type="submit" value="Details"></a>
-            <a href="{% url 'crm_lead_create'  %}"><input type="submit" value="Create"></a>
-        </div>
+            <a href="{% url 'crm_lead_details' pk=lead.pk %}">
+                <input type="submit" value="Details">
+            </a>
+        </div><hr>
         
     {% endfor %}
         
