@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    <h1>Are you sure you want to delete '{{ lead }}'?</h1>
+    <form action="" method="GET">
+        {{ form.as_p }}
+    </form>
+
+{% endblock content %}
+    
