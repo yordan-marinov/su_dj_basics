@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    <h1>This is the edit page!!!</h1>
+    <hr>
+
+    <form action="{% url 'crm_lead_edit' pk=lead.pk %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Edit">
+    </form>
+    <br>
+    <form action="{% url 'crm_lead_list' %}" method="GET">
+        <input type="submit" value="Cancel">
+    </form>
+{% endblock content %}
+    
