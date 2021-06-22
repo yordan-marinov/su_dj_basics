@@ -9,9 +9,12 @@ def positive_digit(value):
 
 
 class LeadForm(forms.Form):
-    first_name = forms.CharField(max_length=25)
-    last_name = forms.CharField(max_length=25)
-    age = forms.IntegerField(validators=[positive_digit,])
+    first_name = forms.CharField(
+        max_length=25,
+        disabled=True,
+        )
+    last_name = forms.CharField(max_length=25, disabled=True)
+    age = forms.IntegerField(validators=[positive_digit,], disabled=True)
     
      
 class LeadModelForm(forms.ModelForm):
