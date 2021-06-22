@@ -1,5 +1,5 @@
 from typing import ContextManager
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 
 from crm.forms import LeadForm, LeadModelForm
 
@@ -61,13 +61,28 @@ def create_lead(request):
 
 
 def delete_lead(request, pk):
-    obj = Lead.objects.get(pk=pk)
-    if request.method == "POST" or None:
+    
+    obj = get_object_or_404(Lead, pk=pk)
+    form = LeadForm(initial=obj.__dict__)
+    # form = LeadModelForm(instance=obj)
+    if request.method == "POST":
         obj.delete()
         return redirect("crm_lead_list")
 
+    context = {'lead': obj, 'form': form}
+    return render(request, "crm/crm_lead_delete.htm", context)
+
+
+def edit_lead(request, pk):
+    obj = Lead.objects.get(pk=pk)
+    form = LeadModelForm(request.POST or None, instance=obj)
+    if form.is_valid():
+        form.save()
+        return redirect("crm_lead_list")
+
     context = {
-        "lead": obj,
-        "page_name": "Delete Lead",
+        "form": form,
+        'lead': obj,
+        "page_name": "Edit Lead",
     }
-    return render(request, 'crm/crm_lead_delete.htm', context)
+    return render(request, "crm/crm_lead_edit.html", context)
