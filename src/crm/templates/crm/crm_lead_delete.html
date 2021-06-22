@@ -5,19 +5,14 @@
 {% block content %}
     <h1>Are you sure you want to delete '{{ lead }}'?</h1>
     <hr>
-
-    <h3>name: {{ lead }}</h3>
-    <p>age: {{ lead.age }}</p>
-    <p>agent: {{ lead.agent }}</p>
-    <br>
-
-    <hr>
-    <form action="." method="POST">
+    <form action="{% url 'crm_lead_delete' lead.pk %}" method="POST">
         {% csrf_token %}
+        {{ form.as_p }}
         <input type="submit" value="Delete">
     </form>
     <br>
-    <form action="{% url 'crm_lead_list' %}" method="GET">
+    <form action="{% url 'crm_lead_list' %}" method="POST">
+        {% csrf_token %}
         <input type="submit" value="Cancel">
     </form>
 {% endblock content %}
